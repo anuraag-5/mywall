@@ -9,8 +9,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        brand: {
+          DEFAULT: '#EADFFF',
+          'primary': '#9966FF',
+          'secondary': '#925CFF'
+        }
+      },
+      fontFamily: {
+        lexend: ["Lexend", "sans-serif"],
       },
     },
   },
