@@ -47,12 +47,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
       </section>
       <section className="flex-1 flex flex-col justify-around lg:justify-center items-center p-6 lg:p-8 bg-brand">
         <div className="lg:hidden">
-          <Image 
-          src="/Full-Logo.svg"
-          alt="Brand"
-          width={250}
-          height={210}
-          />
+          <Image src="/Full-Logo.svg" alt="Brand" width={250} height={210} />
         </div>
         {children}
       </section>
