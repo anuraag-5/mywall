@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -14,22 +15,33 @@ import {
 } from "@/components/ui/form";
 import React from "react";
 import Link from "next/link";
+import { useSeedContext } from "@/context/SeedContext";
 
 const formSchema = z.object({
   seed: z.string().min(2).max(120),
 });
 
 const ImportWallets = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       seed: "",
     },
   });
+  const seedContext = useSeedContext();
+  if (!seedContext) {
+    throw new Error("useSeedContext must be used within a SeedContextProvider");
+  }
 
-  // 2. Define a submit handler.
+  const { setSeed } = seedContext;
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    if (values.seed.length === 0) return;
+
+    localStorage.setItem("seed", values.seed);
+    setSeed(values.seed);
+    router.push("/wallets");
   }
   return (
     <Form {...form}>
