@@ -5,6 +5,8 @@ import { createContext, useContext, ReactNode, useState, Dispatch, SetStateActio
 interface SeedContextType {
     seed: string | null;
     setSeed: Dispatch<SetStateAction<string | null>>;
+    accountsGenerated: number;
+    setAccountsGenerated: Dispatch<SetStateAction<number>>
     isSeedAvailable: () => Promise<boolean>; 
 }
 
@@ -12,6 +14,7 @@ const SeedContext = createContext<SeedContextType | undefined>(undefined);
 
 const SeedContextProvider = ({ children }:{ children: ReactNode }) => {
     const [ seed, setSeed ] = useState<string | null>(null);
+    const [ accountsGenerated, setAccountsGenerated ] = useState<number>(0);
 
     const isSeedAvailable = async () => {
         if(seed) return true;
@@ -28,6 +31,8 @@ const SeedContextProvider = ({ children }:{ children: ReactNode }) => {
     const value = {
         seed,
         setSeed,
+        accountsGenerated,
+        setAccountsGenerated,
         isSeedAvailable
     }
 
