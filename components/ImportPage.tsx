@@ -49,7 +49,9 @@ const ImportWallets = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8 w-full max-w-[650px]"
       >
-        <h1 className="text-3xl font-extrabold w-full flex justify-center lg:justify-start">Import Wallet</h1>
+        <h1 className="text-3xl font-extrabold w-full flex justify-center lg:justify-start">
+          Import Wallet
+        </h1>
         <FormField
           control={form.control}
           name="seed"
